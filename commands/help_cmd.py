@@ -3,6 +3,7 @@ import traceback
 from functions import echo, dm_user, esc_md
 from utils import log
 from commands.base import Cmd
+from os import getcwd
 
 help_text = [
     [
@@ -69,7 +70,7 @@ async def execute(ctx, params):
                 return False, "NO RESPONSE"
             return True, "NO RESPONSE"
         can_embed = channel.permissions_for(ctx['guild'].me).embed_links
-        with open("docs.md", 'r', encoding='utf8') as f:
+        with open("{}\docs.md".format(getcwd()), 'r', encoding='utf8') as f:
             docs = f.read()
         sections = docs.split('** **')
         for i, s in enumerate(sections):
